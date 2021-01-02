@@ -1,5 +1,5 @@
 ### ELDORAS
-Web site / Application web for `Eldoras server GTA V - RP`
+[GTA-V/RP] Site web / Application web pour `Eldoras`
 
 ### ISSUE
-Feel free to open a new issue if you have some request to do, or some enhancements for the project.
+[Issue] Ne pas hesiter à crée une nouvelle issue pour déclarer un bug, ou proposer une idée de fonctionnalité à ajouter au projet web
