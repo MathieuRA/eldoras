@@ -1,5 +1,4 @@
 ### ELDORAS
-
 Web site / Application web for `Eldoras server GTA V - RP`
 
 ### ISSUE
