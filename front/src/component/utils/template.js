@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { elastic as Menu } from "react-burger-menu";
+import { elastic as Menu } from 'react-burger-menu';
 
-import "./template.css";
+import './template.css';
 import './menu.css'
 
 export const BackgroundImg = ({ alt, img }) => {
   return (
-    <img className={"fullScreenImg"} src={`./assets/img/${img}`} alt={alt} />
+    <img draggable={false} className={'fullScreenImg'} src={`./assets/img/${img}`} alt={alt} />
   );
 };
 
@@ -26,27 +26,42 @@ export const Filter = ({ children, side, rotate }) => {
 
 export const MainMenu = ({ children }) => {
   return (
-    <nav className={"menu"}>
-      <ul className="menuContainer">
+    <nav className={'menu'}>
+      <ul className='menuContainer'>
         <li>
           <div>
             <Menu width={200} pageWrapId={'wrapId'} >
-                <ItemMenu>Accueil</ItemMenu>
-                <ItemMenu>A Propos</ItemMenu>
-                <ItemMenu>Nous rejoindre</ItemMenu>
-                <ItemMenu disabled>Actualité</ItemMenu>
-                <ItemMenu disabled>Forum</ItemMenu>
-                <ItemMenu disabled>Boutique</ItemMenu>
+                <Link>Accueil</Link>
+                <Link>A Propos</Link>
+                <Link>Nous rejoindre</Link>
+                <Link disabled>Actualité</Link>
+                <Link disabled>Forum</Link>
+                <Link disabled>Boutique</Link>
             </Menu>
           </div>
         </li>
-        <li className="titleMenu">ELDORAS</li>
+        <li className='titleMenu'>ELDORAS</li>
         <li>
-          <div>SHOP</div>
+          <div className='rowButtonLink'>
+            <Link button disabled>Shop</Link>
+            <Link button disabled>Actu</Link>
+          </div>
         </li>
       </ul>
     </nav>
   );
 };
 
-const ItemMenu = ({children,disabled}) => <p className={`menu-item ${disabled && 'disabled'}`}>{children}</p>
+export const Link = ({children,disabled = false,dark = false,button = false }) => {
+  let style = 'menu-item'
+  if(disabled){
+    style += ' disabled'
+  }
+  if(button){
+    style += ' buttonLink'
+  }
+  if(dark){
+    style += ' darkButton'
+  }
+  return <p className={style}><span>{children}</span></p>
+}
