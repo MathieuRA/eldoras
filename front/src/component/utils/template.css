@@ -6,6 +6,7 @@ ul {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
 .home {
@@ -23,9 +24,7 @@ ul {
 
 .filter {
   height: 150%;
-  width: 75%;
   top: -10%;
-  right: -10%;
   background-color: #141414d9;
   position: relative;
   z-index: 3;

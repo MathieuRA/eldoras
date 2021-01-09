@@ -28,11 +28,13 @@ export const Section = ({ children, section }) => (
   </section>
 )
 
-export const Filter = ({ children, side, rotate }) => (
+export const Filter = ({ float, rotate, right, width }) => (
   <div
     className={`filter`}
     style={{
-      float: side,
+      width: width + '%',
+      float: float,
+      right: right + '%',
       transform: `rotateZ(${rotate}deg)`,
     }}
   ></div>
@@ -44,9 +46,11 @@ export const MainMenu = ({ children }) => (
       <li>
         <div>
           <Menu width={200} pageWrapId={'wrapId'}>
-            <Link>Accueil</Link>
-            <Link>A Propos</Link>
-            <Link>Nous rejoindre</Link>
+            <Link link={'accueil'}>Accueil</Link>
+            <Link link={'a-propos'}>A Propos</Link>
+            <Link link={'nous-rejoindre'}>
+              Nous rejoindre
+            </Link>
             <Tooltips content={'Bientôt disponible'}>
               <Link disabled>Actualité</Link>
             </Tooltips>
@@ -96,6 +100,8 @@ export const Link = ({
     if (newTab) {
       return window.open(`https://www.${link}`, '_blank')
     }
+
+    window.location.hash = link
   }
   let style = 'menu-item'
   if (disabled) {
