@@ -1,17 +1,16 @@
 import About from './component/About'
 import Home from './component/Home'
+import useScrollBlock from './component/customHooks/useScrollBlock'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { isEmpty } from 'lodash'
 
 import { MainMenu } from './component/utils/template'
 
 import './App.css'
-import useScrollBlock from './component/customHooks/useScrollBlock'
 
 function App() {
-  const [route, setRoute] = useState('home')
-  const [blockScroll, allowScroll] = useScrollBlock()
+  const [blockScroll] = useScrollBlock()
 
   let isScrooling = false
 
@@ -44,7 +43,9 @@ function App() {
           : 'accueil'
         break
       case '#nous-rejoindre':
-        window.location.hash = !downScroll && 'a-propos'
+        window.location.hash = !downScroll
+          ? 'a-propos'
+          : 'nous-rejoindre'
         break
       default:
         break
@@ -68,6 +69,7 @@ function App() {
         <div id={'a-propos'}>
           <About />
         </div>
+        <div id={'nous-rejoindre'}></div>
       </main>
     </>
   )

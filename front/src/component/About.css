@@ -5,4 +5,45 @@
   z-index: 10;
   position: relative;
   float: right;
+  display: flex;
+}
+.rightSideAbout ul {
+  margin: auto;
+  list-style-type: none;
+  padding: 0;
+}
+.rightSideAbout li {
+  display: flex;
+  margin: 15px;
+}
+.logoList {
+  border: 2px solid #b8b7ad;
+  border-radius: 50%;
+  display: flex;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  margin-right: 30px;
+}
+.rightSideAbout p {
+  margin: auto;
+  font-size: 1.7em;
+}
+.logoList svg {
+  margin: auto;
+}
+.textAbout {
+  font-size: 6rem;
+  position: absolute;
+  z-index: 10;
+  width: 45%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 30%;
+  color: #b8b7ad;
+}
+.textAbout span {
+  color: #61589a;
 }
