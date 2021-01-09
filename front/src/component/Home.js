@@ -1,12 +1,19 @@
 import React from 'react'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faFacebookSquare,
+  faInstagram,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons'
+
 import {
   BackgroundImg,
   Filter,
+  Link,
   MainMenu,
   Section,
 } from './utils/template'
-import { Link } from './utils/template'
 import './home.css'
 
 export default function Home() {
@@ -23,13 +30,22 @@ export default function Home() {
           <div className='containerHome'>
             <div className={'columnRS'}>
               <Link button dark>
-                FB
+                <FontAwesomeIcon
+                  icon={faFacebookSquare}
+                  size={'2x'}
+                />
               </Link>
               <Link button dark>
-                INSTA
+                <FontAwesomeIcon
+                  icon={faInstagram}
+                  size={'2x'}
+                />
               </Link>
               <Link button dark>
-                TWIT
+                <FontAwesomeIcon
+                  icon={faTwitter}
+                  size={'2x'}
+                />
               </Link>
             </div>
             <div className={'textPresentation'}>

@@ -1,3 +1,9 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faCar,
+  faNewspaper,
+} from '@fortawesome/free-solid-svg-icons'
+
 import React from 'react'
 
 import { elastic as Menu } from 'react-burger-menu'
@@ -58,12 +64,15 @@ export const MainMenu = ({ children }) => (
         <div className='rowButtonLink'>
           <Tooltips content={'Bientôt disponible'}>
             <Link button disabled>
-              Shop
+              <FontAwesomeIcon icon={faCar} size={'2x'} />
             </Link>
           </Tooltips>
           <Tooltips content={'Bientôt disponible'}>
             <Link button disabled>
-              Actu
+              <FontAwesomeIcon
+                icon={faNewspaper}
+                size={'2x'}
+              />
             </Link>
           </Tooltips>
         </div>
