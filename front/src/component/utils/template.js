@@ -86,7 +86,17 @@ export const Link = ({
   disabled = false,
   dark = false,
   button = false,
+  link,
+  newTab = false,
 }) => {
+  const handleClick = () => {
+    if (disabled) {
+      return
+    }
+    if (newTab) {
+      return window.open(`https://www.${link}`, '_blank')
+    }
+  }
   let style = 'menu-item'
   if (disabled) {
     style += ' disabled'
@@ -98,7 +108,7 @@ export const Link = ({
     style += ' darkButton'
   }
   return (
-    <p className={style}>
+    <p className={style} onClick={handleClick}>
       <span>{children}</span>
     </p>
   )

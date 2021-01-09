@@ -29,19 +29,29 @@ export default function Home() {
           <Filter side={'right'} rotate={10}></Filter>
           <div className='containerHome'>
             <div className={'columnRS'}>
-              <Link button dark>
+              <Link
+                button
+                dark
+                link={'facebook.com'}
+                newTab
+              >
                 <FontAwesomeIcon
                   icon={faFacebookSquare}
                   size={'2x'}
                 />
               </Link>
-              <Link button dark>
+              <Link
+                button
+                dark
+                link={'instagram.com'}
+                newTab
+              >
                 <FontAwesomeIcon
                   icon={faInstagram}
                   size={'2x'}
                 />
               </Link>
-              <Link button dark>
+              <Link button dark link={'twitter.com'} newTab>
                 <FontAwesomeIcon
                   icon={faTwitter}
                   size={'2x'}
