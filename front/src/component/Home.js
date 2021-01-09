@@ -6,6 +6,7 @@ import {
   faInstagram,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 import {
   BackgroundImg,
@@ -14,7 +15,9 @@ import {
   MainMenu,
   Section,
 } from './utils/template'
-import './home.css'
+
+import '../App.css'
+import './Home.css'
 
 export default function Home() {
   return (
@@ -64,6 +67,14 @@ export default function Home() {
                 rêviez
               </p>
             </div>
+          </div>
+          <div className={'arrowDown'}>
+            <Link button>
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                size={'2x'}
+              />
+            </Link>
           </div>
         </Section>
       </main>

@@ -11,7 +11,7 @@ import { elastic as Menu } from 'react-burger-menu'
 import Tooltips from './Tooltips'
 
 import './template.css'
-import './menu.css'
+import './Menu.css'
 
 export const BackgroundImg = ({ alt, img }) => (
   <img

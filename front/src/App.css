@@ -1,0 +1,31 @@
+.arrowDown {
+  width: 54px;
+  height: 54px;
+  z-index: 10;
+  position: absolute;
+  top: 89%;
+  right: 50%;
+  transform: translate(50%, 50%);
+}
+.arrowDown span {
+  position: relative;
+  animation: arrowDown 1s linear infinite;
+}
+
+@keyframes arrowDown {
+  0% {
+    top: 0;
+  }
+  25% {
+    top: -3px;
+  }
+  50% {
+    top: 0;
+  }
+  75% {
+    top: 5px;
+  }
+  100% {
+    top: 0;
+  }
+}
