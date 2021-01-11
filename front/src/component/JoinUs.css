@@ -54,13 +54,3 @@
 .containerJoinUs div:nth-child(2) span {
   color: #61589a;
 }
-.containerJoinUs button {
-  width: fit-content;
-  font-size: 4rem;
-  padding: 10px;
-  background-color: #61589a;
-  border: 5px solid #30247b;
-  color: #b8b7ad;
-  border-radius: 25px;
-  cursor: pointer;
-}

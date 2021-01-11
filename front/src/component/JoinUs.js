@@ -13,6 +13,7 @@ import {
 import './JoinUs.css'
 
 export default function JoinUs() {
+  console.log(document.getElementsByClassName('widgetLogo-6zH6Nv')[0])
   return (
     <>
       <Section section={'joinUs'}>
@@ -30,8 +31,8 @@ export default function JoinUs() {
               <img src='./assets/img/logo.png' alt={'ok'} />
             </div>
             <div>
-              <p>Alors, <span>convaincu ?</span> Si oui, tu n'as plus que à cliquer sur le <span>boutton</span> juste en dessous pour accéder à notre <span>discord</span>.<br /><br />A tout de suite ! 😉</p>
-              <button onClick={discordLink}>Discord</button>
+              <p>Alors, <span>convaincu ?</span> Si oui, tu n'as plus qu'à cliquer sur le <span>boutton</span> juste en dessous pour te connecter à notre <span>discord</span>.<br /><br />A tout de suite ! 😉</p>
+              <iframe title='discord widget' src="https://discord.com/widget?id=792781992609579070&theme=dark" width="350" height="170" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
           </div>
         </div>
@@ -47,5 +48,3 @@ export default function JoinUs() {
     </>
   )
 }
-
-const discordLink = () => window.open('https://discord.gg/qWUuWJU7nK', '_blank')

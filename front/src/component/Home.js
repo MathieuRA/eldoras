@@ -18,56 +18,70 @@ import {
 import '../App.css'
 import './Home.css'
 
-export default function Home() {
+export default function Home({ isMobile }) {
+  const responsive = {
+    filter: {
+      rotate: isMobile ? 0 : 10,
+      right: isMobile ? 0 : -10,
+      width: isMobile ? 100 : 75,
+      top: isMobile ? 0 : -10,
+      absolute: isMobile ? true : false
+    }
+  }
+
+  const textPresentation = isMobile ? 'textPresentationMobile' : 'textPresentation'
+
   return (
     <>
-      <Section section={'home'}>
+      <Section section={'home'} isMobile={isMobile}>
         <BackgroundImg
           img={'bgHome.jpg'}
           alt={'lossantos'}
         />
         <Filter
           float={'right'}
-          rotate={10}
-          right={-10}
-          width={75}
+          {...responsive.filter}
         />
-        <div className='containerHome'>
-          <div className={'columnRS'}>
-            <Link button dark link={'facebook.com'} newTab>
-              <FontAwesomeIcon
-                icon={faFacebookSquare}
-                size={'2x'}
-              />
-            </Link>
-            <Link button dark link={'instagram.com'} newTab>
-              <FontAwesomeIcon
-                icon={faInstagram}
-                size={'2x'}
-              />
-            </Link>
-            <Link button dark link={'twitter.com'} newTab>
-              <FontAwesomeIcon
-                icon={faTwitter}
-                size={'2x'}
-              />
-            </Link>
-          </div>
-          <div className={'textPresentation'}>
+        <div className='containerHome' style={isMobile && { transform: 'none', position: 'relative', paddingTop: 90, paddingBottom: 77 }}>
+          {!isMobile &&
+            <div className={'columnRS'}>
+              <Link button dark link={'facebook.com'} newTab>
+                <FontAwesomeIcon
+                  icon={faFacebookSquare}
+                  size={'2x'}
+                />
+              </Link>
+              <Link button dark link={'instagram.com'} newTab>
+                <FontAwesomeIcon
+                  icon={faInstagram}
+                  size={'2x'}
+                />
+              </Link>
+              <Link button dark link={'twitter.com'} newTab>
+                <FontAwesomeIcon
+                  icon={faTwitter}
+                  size={'2x'}
+                />
+              </Link>
+            </div>
+          }
+          <div className={textPresentation}>
             <p>
               Le serveur <span>roleplay</span> dont vous
               rêviez
             </p>
           </div>
         </div>
-        <div className={'arrowDown'}>
-          <Link button link={'a-propos'}>
-            <FontAwesomeIcon
-              icon={faChevronDown}
-              size={'2x'}
-            />
-          </Link>
-        </div>
+        {!isMobile &&
+          <div className={'arrowDown'}>
+            <Link button link={'a-propos'}>
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                size={'2x'}
+              />
+            </Link>
+          </div>
+        }
       </Section>
     </>
   )

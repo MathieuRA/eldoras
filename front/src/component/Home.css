@@ -17,10 +17,20 @@
   color: #b8b7ad;
   margin-right: 5%;
 }
-.textPresentation span {
+.textPresentationMobile {
+  width: 100%;
+  color: #b8b7ad;
+  text-align: center;
+}
+.textPresentation span,
+.textPresentationMobile span {
   color: #61589a;
 }
 .textPresentation p {
   font-size: 6rem;
+  margin: auto;
+}
+.textPresentationMobile p {
+  font-size: 4rem;
   margin: auto;
 }

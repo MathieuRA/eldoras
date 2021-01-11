@@ -8,7 +8,12 @@ ul {
   overflow: hidden;
   position: relative;
 }
-
+.mobile {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
 .home {
   background-repeat: no-repeat;
   height: 100vh;
@@ -27,6 +32,15 @@ ul {
   background-color: #141414d9;
   z-index: 3;
 }
+.filterMobile {
+  width: 100%;
+  height: 100%;
+  float: right;
+  z-index: 10;
+  right: 0%;
+  transform: rotateZ(0deg);
+  position: absolute;
+}
 .menu {
   position: fixed;
   z-index: 100;
@@ -43,6 +57,14 @@ ul {
   font-size: 6rem;
   font-family: revert;
   font-weight: 100;
+}
+.titleMenuMobile {
+  font-size: 3rem;
+  margin: auto;
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 .disabled {
   color: #ffffff3d !important;

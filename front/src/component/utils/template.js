@@ -22,11 +22,14 @@ export const BackgroundImg = ({ alt, img }) => (
   />
 )
 
-export const Section = ({ children, section }) => (
-  <section className={`fullScreen ${section}`}>
-    {children}
-  </section>
-)
+export const Section = ({ children, section, isMobile }) => {
+  const sizeScreen = isMobile ? 'mobile' : 'fullScreen'
+  return (
+    <section className={section, sizeScreen}>
+      {children}
+    </section>
+  )
+}
 
 export const Filter = ({
   absolute,
@@ -51,50 +54,64 @@ export const Filter = ({
   ></div>
 )
 
-export const MainMenu = ({ children }) => (
-  <nav className={'menu'}>
-    <ul className='menuContainer'>
-      <li>
-        <div>
-          <Menu width={200} pageWrapId={'wrapId'}>
-            <Link link={'accueil'}>Accueil</Link>
-            <Link link={'a-propos'}>A Propos</Link>
-            <Link link={'nous-rejoindre'}>
-              Nous rejoindre
+export const MainMenu = ({ isMobile }) => {
+  const responsive = {
+    titleMenu: '',
+  }
+
+  isMobile
+    ?
+    responsive.titleMenu = 'titleMenuMobile'
+    :
+    responsive.titleMenu = 'titleMenu'
+
+  return (
+    <nav className={'menu'}>
+      <ul className='menuContainer'>
+        <li>
+          <div>
+            <Menu width={200} pageWrapId={'wrapId'}>
+              <Link link={'accueil'}>Accueil</Link>
+              <Link link={'a-propos'}>A Propos</Link>
+              <Link link={'nous-rejoindre'}>
+                Nous rejoindre
             </Link>
-            <Tooltips content={'Bientôt disponible'}>
-              <Link disabled>Actualité</Link>
-            </Tooltips>
-            <Tooltips content={'Bientôt disponible'}>
-              <Link disabled>Forum</Link>
-            </Tooltips>
-            <Tooltips content={'Bientôt disponible'}>
-              <Link disabled>Boutique</Link>
-            </Tooltips>
-          </Menu>
-        </div>
-      </li>
-      <li className='titleMenu'>ELDORAS</li>
-      <li>
-        <div className='rowButtonLink'>
-          <Tooltips content={'Bientôt disponible'}>
-            <Link button disabled>
-              <FontAwesomeIcon icon={faCar} size={'2x'} />
-            </Link>
-          </Tooltips>
-          <Tooltips content={'Bientôt disponible'}>
-            <Link button disabled>
-              <FontAwesomeIcon
-                icon={faNewspaper}
-                size={'2x'}
-              />
-            </Link>
-          </Tooltips>
-        </div>
-      </li>
-    </ul>
-  </nav>
-)
+              <Tooltips content={'Bientôt disponible'}>
+                <Link disabled>Actualité</Link>
+              </Tooltips>
+              <Tooltips content={'Bientôt disponible'}>
+                <Link disabled>Forum</Link>
+              </Tooltips>
+              <Tooltips content={'Bientôt disponible'}>
+                <Link disabled>Boutique</Link>
+              </Tooltips>
+            </Menu>
+          </div>
+        </li>
+        <li className={responsive.titleMenu}>ELDORAS</li>
+        {!isMobile &&
+          <li>
+            <div className='rowButtonLink'>
+              <Tooltips content={'Bientôt disponible'}>
+                <Link button disabled>
+                  <FontAwesomeIcon icon={faCar} size={'2x'} />
+                </Link>
+              </Tooltips>
+              <Tooltips content={'Bientôt disponible'}>
+                <Link button disabled>
+                  <FontAwesomeIcon
+                    icon={faNewspaper}
+                    size={'2x'}
+                  />
+                </Link>
+              </Tooltips>
+            </div>
+          </li>
+        }
+      </ul>
+    </nav>
+  )
+}
 
 export const Link = ({
   children,
