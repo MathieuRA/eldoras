@@ -28,14 +28,25 @@ export const Section = ({ children, section }) => (
   </section>
 )
 
-export const Filter = ({ float, rotate, right, width }) => (
+export const Filter = ({
+  absolute,
+  float,
+  rotate,
+  right,
+  width,
+  height = 150,
+  top = -10,
+}) => (
   <div
     className={`filter`}
     style={{
       width: width + '%',
+      height: height + '%',
       float: float,
       right: right + '%',
       transform: `rotateZ(${rotate}deg)`,
+      position: absolute ? 'absolute' : 'relative',
+      top: top + '%'
     }}
   ></div>
 )

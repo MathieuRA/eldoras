@@ -3,7 +3,7 @@ import { useRef } from 'react'
 const safeDocument =
   typeof document !== 'undefined' ? document : {}
 
-export default () => {
+export default function useScrollBlock() {
   const scrollBlocked = useRef()
   const html = safeDocument.documentElement
   const { body } = safeDocument
@@ -31,9 +31,8 @@ export default () => {
     html.style.overflow = 'hidden' /* [2] */
     body.style.position = 'relative' /* [1] */
     body.style.overflow = 'hidden' /* [2] */
-    body.style.paddingRight = `${
-      bodyPaddingRight + scrollBarWidth
-    }px`
+    body.style.paddingRight = `${bodyPaddingRight + scrollBarWidth
+      }px`
 
     scrollBlocked.current = true
   }

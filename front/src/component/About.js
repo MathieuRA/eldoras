@@ -110,7 +110,7 @@ export default function About() {
           </ul>
         </div>
         <div className={'arrowDown'}>
-          <Link button>
+          <Link button link={'nous-rejoindre'}>
             <FontAwesomeIcon
               icon={faChevronDown}
               size={'2x'}

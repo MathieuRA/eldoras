@@ -8,6 +8,7 @@ import { isEmpty } from 'lodash'
 import { MainMenu } from './component/utils/template'
 
 import './App.css'
+import JoinUs from './component/JoinUs'
 
 function App() {
   const [blockScroll] = useScrollBlock()
@@ -17,7 +18,7 @@ function App() {
   useEffect(() => {
     blockScroll()
     window.addEventListener('mousewheel', scroll)
-  }, [])
+  })
 
   const scroll = e => {
     if (isScrooling) {
@@ -53,7 +54,7 @@ function App() {
 
     setTimeout(() => {
       isScrooling = false
-    }, 750)
+    }, 1300)
   }
 
   return (
@@ -69,7 +70,9 @@ function App() {
         <div id={'a-propos'}>
           <About />
         </div>
-        <div id={'nous-rejoindre'}></div>
+        <div id={'nous-rejoindre'}>
+          <JoinUs />
+        </div>
       </main>
     </>
   )
