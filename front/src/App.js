@@ -62,18 +62,16 @@ function App() {
       <MainMenu></MainMenu>
       <main
         id={'wrapId'}
-        onScroll={() => console.log('scrooled')}
-      >
-        <div id={'accueil'}>
-          <Home />
-        </div>
-        <div id={'a-propos'}>
-          <About />
-        </div>
-        <div id={'nous-rejoindre'}>
-          <JoinUs />
-        </div>
-      </main>
+      ></main>
+      <div id={'accueil'}>
+        <Home />
+      </div>
+      <div id={'a-propos'}>
+        <About />
+      </div>
+      <div id={'nous-rejoindre'}>
+        <JoinUs />
+      </div>
     </>
   )
 }
