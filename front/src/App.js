@@ -3,10 +3,10 @@ import Home from './component/Home'
 import useScrollBlock from './component/customHooks/useScrollBlock'
 import JoinUs from './component/JoinUs'
 
-import { useEffect, } from 'react'
 import { isEmpty } from 'lodash'
+import { useEffect } from 'react'
 
-import { MainMenu } from './component/utils/template'
+import { Footer, MainMenu } from './component/utils/template'
 
 import './App.css'
 
@@ -46,9 +46,14 @@ function App() {
           : 'accueil'
         break
       case '#nous-rejoindre':
+        window.location.hash = downScroll
+          ? 'credits'
+          : 'a-propos'
+        break
+      case '#credits':
         window.location.hash = !downScroll
-          ? 'a-propos'
-          : 'nous-rejoindre'
+          ? 'nous-rejoindre'
+          : 'credits'
         break
       default:
         break
@@ -69,10 +74,13 @@ function App() {
         <Home isMobile={mobile} />
       </div>
       <div id={'a-propos'}>
-        <About />
+        <About isMobile={mobile} />
       </div>
       <div id={'nous-rejoindre'}>
-        <JoinUs />
+        <JoinUs isMobile={mobile} />
+      </div>
+      <div id={'credits'}>
+        <Footer />
       </div>
     </>
   )

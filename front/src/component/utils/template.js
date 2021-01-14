@@ -25,7 +25,7 @@ export const BackgroundImg = ({ alt, img }) => (
 export const Section = ({ children, section, isMobile }) => {
   const sizeScreen = isMobile ? 'mobile' : 'fullScreen'
   return (
-    <section className={section, sizeScreen}>
+    <section className={`${section} ${sizeScreen}`}>
       {children}
     </section>
   )
@@ -145,5 +145,14 @@ export const Link = ({
     <p className={style} onClick={handleClick}>
       <span>{children}</span>
     </p>
+  )
+}
+
+export const Footer = () => {
+  const currentDate = new Date()
+  return (
+    <footer>
+      <p>Copyright 2020 - {currentDate.getFullYear()} | Tous droits réservés | Conception : <a href='https://mathieu-raisin.fr' target='_blank' rel="noopener noreferrer">Mathieu R</a></p>
+    </footer>
   )
 }

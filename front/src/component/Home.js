@@ -20,6 +20,12 @@ import './Home.css'
 
 export default function Home({ isMobile }) {
   const responsive = {
+    containerHome: {
+      transform: isMobile && 'none',
+      position: isMobile && 'relative',
+      paddingTop: isMobile && 90,
+      paddingBottom: isMobile && 77
+    },
     filter: {
       rotate: isMobile ? 0 : 10,
       right: isMobile ? 0 : -10,
@@ -42,7 +48,8 @@ export default function Home({ isMobile }) {
           float={'right'}
           {...responsive.filter}
         />
-        <div className='containerHome' style={isMobile && { transform: 'none', position: 'relative', paddingTop: 90, paddingBottom: 77 }}>
+
+        <div className='containerHome' style={{ ...responsive.containerHome }}>
           {!isMobile &&
             <div className={'columnRS'}>
               <Link button dark link={'facebook.com'} newTab>

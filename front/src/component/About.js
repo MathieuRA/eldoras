@@ -75,48 +75,70 @@ const LIST_ABOUT = [
   },
 ]
 
-export default function About() {
+export default function About({ isMobile }) {
+  const responsive = {
+    rightSideAbout: {
+      width: isMobile ? '100%' : '45%'
+    },
+    li: {
+      display: isMobile ? 'block' : 'flex'
+    },
+    logoLi: {
+      margin: isMobile ? 'auto' : '0 30px 0 0'
+    },
+    textLi: {
+      textAlign: isMobile ? 'center' : '-webkit-match-parent'
+    }
+  }
+
   return (
     <>
-      <Section section={'about'}>
-        <BackgroundImg
-          alt={'lossantos'}
-          img={'bgAbout.jpg'}
-        />
-        <Filter
-          float={'left'}
-          rotate={10}
-          right={10}
-          width={34.6}
-        />
-        <div className={'textAbout'}>
-          <span>Eldoras</span> est doté{' '}
-          <span>d'énormement</span> de fonctionnalités !
-        </div>
-        <div className={'rightSideAbout'}>
+      <Section section={'about'} isMobile={isMobile}>
+        {!isMobile &&
+          <>
+            <BackgroundImg
+              alt={'lossantos'}
+              img={'bgAbout.jpg'}
+            />
+            <Filter
+              float={'left'}
+              rotate={10}
+              right={10}
+              width={34.6}
+            />
+            <div className={'textAbout'}>
+              <span>Eldoras</span> est doté{' '}
+              <span>d'énormement</span> de fonctionnalités !
+            </div>
+          </>
+        }
+        <div className={'rightSideAbout'} style={{ ...responsive.rightSideAbout }}>
           <ul>
             {map(LIST_ABOUT, element => (
-              <li key={element.id}>
-                <span className={'logoList'}>
+              <li key={element.id} style={{ ...responsive.li }}>
+                <span className={'logoList'} style={{ ...responsive.logoLi }}>
                   <FontAwesomeIcon
                     icon={element.logo}
                     size={'3x'}
                     color={element.color}
                   />
                 </span>
-                <p>{element.text}</p>
+                <p style={{ ...responsive.textLi }}>{element.text}</p>
               </li>
             ))}
           </ul>
         </div>
-        <div className={'arrowDown'}>
-          <Link button link={'nous-rejoindre'}>
-            <FontAwesomeIcon
-              icon={faChevronDown}
-              size={'2x'}
-            />
-          </Link>
-        </div>
+        {!isMobile &&
+          <div className={'arrowDown'}>
+            <Link button link={'nous-rejoindre'}>
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                size={'2x'}
+              />
+            </Link>
+          </div>
+        }
+
       </Section>
     </>
   )
