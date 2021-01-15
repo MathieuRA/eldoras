@@ -4,6 +4,7 @@
   "description": "API for Eldoras web application",
   "main": "index.ts",
   "scripts": {
+    "build": "tsc",
     "start": "ts-node-dev --respawn index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
