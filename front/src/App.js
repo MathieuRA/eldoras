@@ -1,18 +1,25 @@
 import About from './component/About'
+import CarShop from './component/CarShop'
 import Home from './component/Home'
 import useScrollBlock from './component/customHooks/useScrollBlock'
 import JoinUs from './component/JoinUs'
 
 import { isEmpty } from 'lodash'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-import { Footer, MainMenu } from './component/utils/template'
+import {
+  Footer,
+  MainMenu,
+} from './component/utils/template'
 
 import './App.css'
 
 function App() {
-  const mobile = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)
+  const mobile =
+    typeof window.orientation !== 'undefined' ||
+    navigator.userAgent.indexOf('IEMobile') !== -1
 
+  const [route, setRoute] = useState('carShop')
   const [blockScroll] = useScrollBlock()
 
   let isScrooling = false
@@ -67,18 +74,21 @@ function App() {
   return (
     <>
       <MainMenu isMobile={mobile} />
-      <main
-        id={'wrapId'}
-      ></main>
-      <div id={'accueil'}>
-        <Home isMobile={mobile} />
-      </div>
-      <div id={'a-propos'}>
-        <About isMobile={mobile} />
-      </div>
-      <div id={'nous-rejoindre'}>
-        <JoinUs isMobile={mobile} />
-      </div>
+      <main id={'wrapId'}></main>
+      {route === 'home' && (
+        <>
+          <div id={'accueil'}>
+            <Home isMobile={mobile} />
+          </div>
+          <div id={'a-propos'}>
+            <About isMobile={mobile} />
+          </div>
+          <div id={'nous-rejoindre'}>
+            <JoinUs isMobile={mobile} />
+          </div>
+        </>
+      )}
+      {route === 'carShop' && <CarShop />}
       <div id={'credits'}>
         <Footer />
       </div>
