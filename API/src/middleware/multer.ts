@@ -27,6 +27,4 @@ const storage = multer.diskStorage({
   },
 })
 
-export default multer({ storage: storage }).single(
-  'myImage'
-)
+export default multer({ storage: storage }).single('car')

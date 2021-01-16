@@ -1,94 +1,34 @@
-import About from './component/About'
-import CarShop from './component/CarShop'
-import Home from './component/Home'
-import useScrollBlock from './component/customHooks/useScrollBlock'
-import JoinUs from './component/JoinUs'
-
-import { isEmpty } from 'lodash'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import {
   Footer,
   MainMenu,
 } from './component/utils/template'
 
+import Body from './component/Body'
+
 import './App.css'
 
-function App() {
+const App = () => {
   const mobile =
     typeof window.orientation !== 'undefined' ||
     navigator.userAgent.indexOf('IEMobile') !== -1
 
-  const [route, setRoute] = useState('carShop')
-  const [blockScroll] = useScrollBlock()
-
-  let isScrooling = false
-
-  useEffect(() => {
-    !mobile && blockScroll()
-    window.addEventListener('mousewheel', scroll)
-  })
-
-  const scroll = e => {
-    if (isScrooling) {
-      return
-    }
-    const hash = window.location.hash
-    const downScroll = e.deltaY > 0 ? true : false
-    isScrooling = true
-
-    if (isEmpty(hash) && downScroll) {
-      window.location.hash = 'a-propos'
-    }
-
-    switch (hash) {
-      case '#accueil':
-        window.location.hash = downScroll
-          ? 'a-propos'
-          : 'accueil'
-        break
-      case '#a-propos':
-        window.location.hash = downScroll
-          ? 'nous-rejoindre'
-          : 'accueil'
-        break
-      case '#nous-rejoindre':
-        window.location.hash = downScroll
-          ? 'credits'
-          : 'a-propos'
-        break
-      case '#credits':
-        window.location.hash = !downScroll
-          ? 'nous-rejoindre'
-          : 'credits'
-        break
-      default:
-        break
-    }
-
-    setTimeout(() => {
-      isScrooling = false
-    }, 1300)
-  }
+  const [route, setRoute] = useState('admin')
 
   return (
     <>
-      <MainMenu isMobile={mobile} />
+      <MainMenu
+        isMobile={mobile}
+        setRoute={setRoute}
+        currentRoute={route}
+      />
       <main id={'wrapId'}></main>
-      {route === 'home' && (
-        <>
-          <div id={'accueil'}>
-            <Home isMobile={mobile} />
-          </div>
-          <div id={'a-propos'}>
-            <About isMobile={mobile} />
-          </div>
-          <div id={'nous-rejoindre'}>
-            <JoinUs isMobile={mobile} />
-          </div>
-        </>
-      )}
-      {route === 'carShop' && <CarShop />}
+      <Body
+        isMobile={mobile}
+        setRoute={setRoute}
+        currentRoute={route}
+      />
       <div id={'credits'}>
         <Footer />
       </div>
