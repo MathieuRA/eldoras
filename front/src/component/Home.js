@@ -19,23 +19,23 @@ import '../App.css'
 import './Home.css'
 
 export default function Home({
+  currentRoute,
   isMobile,
   setRoute,
-  currentRoute,
 }) {
   const responsive = {
     containerHome: {
-      transform: isMobile && 'none',
-      position: isMobile && 'relative',
-      paddingTop: isMobile && 90,
       paddingBottom: isMobile && 77,
+      paddingTop: isMobile && 90,
+      position: isMobile && 'relative',
+      transform: isMobile && 'none',
     },
     filter: {
-      rotate: isMobile ? 0 : 10,
-      right: isMobile ? 0 : -10,
-      width: isMobile ? 100 : 75,
-      top: isMobile ? 0 : -10,
       absolute: isMobile ? true : false,
+      right: isMobile ? 0 : -10,
+      rotate: isMobile ? 0 : 10,
+      top: isMobile ? 0 : -10,
+      width: isMobile ? 100 : 75,
     },
   }
 
@@ -45,10 +45,10 @@ export default function Home({
 
   return (
     <>
-      <Section section={'home'} isMobile={isMobile}>
+      <Section isMobile={isMobile} section={'home'}>
         <BackgroundImg
-          img={'bgHome.jpg'}
           alt={'lossantos'}
+          img={'bgHome.jpg'}
         />
         <Filter float={'right'} {...responsive.filter} />
 

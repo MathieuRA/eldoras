@@ -13,6 +13,8 @@ import {
   faUserSecret,
 } from '@fortawesome/free-solid-svg-icons'
 
+import { map } from 'lodash'
+
 import {
   BackgroundImg,
   Filter,
@@ -22,7 +24,6 @@ import {
 
 import '../App.css'
 import './About.css'
-import { map } from 'lodash'
 
 const LIST_ABOUT = [
   {
@@ -76,9 +77,9 @@ const LIST_ABOUT = [
 ]
 
 export default function About({
+  currentRoute,
   isMobile,
   setRoute,
-  currentRoute,
 }) {
   const responsive = {
     rightSideAbout: {
@@ -133,9 +134,9 @@ export default function About({
                   style={{ ...responsive.logoLi }}
                 >
                   <FontAwesomeIcon
+                    color={element.color}
                     icon={element.logo}
                     size={'3x'}
-                    color={element.color}
                   />
                 </span>
                 <p style={{ ...responsive.textLi }}>

@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react'
 import { forEach, map } from 'lodash'
 
 export default function Admin() {
-  const [state, setState] = useState({})
   const [categories, setCategories] = useState()
+  const [state, setState] = useState({})
 
   useEffect(() => {
     axios

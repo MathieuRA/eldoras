@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react'
-
 import { isEmpty } from 'lodash'
 
 import About from './About'
-import useScrollBlock from './customHooks/useScrollBlock'
 import Home from './Home'
 import JoinUs from './JoinUs'
+import useScrollBlock from './customHooks/useScrollBlock'
 
 export default function HomeContainer({
+  currentRoute,
   isMobile,
   setRoute,
-  currentRoute,
 }) {
   const [blockScroll, allowScroll] = useScrollBlock()
 
@@ -35,8 +34,8 @@ export default function HomeContainer({
     }
 
     isScrooling = true
-    const hash = window.location.hash
     const downScroll = e.deltaY > 0 ? true : false
+    const hash = window.location.hash
 
     if (isEmpty(hash) && downScroll) {
       window.location.hash = 'a-propos'
@@ -76,23 +75,23 @@ export default function HomeContainer({
     <>
       <div id={'accueil'}>
         <Home
+          currentRoute={currentRoute}
           isMobile={isMobile}
           setRoute={setRoute}
-          currentRoute={currentRoute}
         />
       </div>
       <div id={'a-propos'}>
         <About
+          currentRoute={currentRoute}
           isMobile={isMobile}
           setRoute={setRoute}
-          currentRoute={currentRoute}
         />
       </div>
       <div id={'nous-rejoindre'}>
         <JoinUs
+          currentRoute={currentRoute}
           isMobile={isMobile}
           setRoute={setRoute}
-          currentRoute={currentRoute}
         />
       </div>
     </>

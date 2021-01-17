@@ -14,17 +14,16 @@ import {
 
 import './CarShop.css'
 
-const CarShop = ({ isMobile, currentRoute, setRoute }) => {
-  const [cars, setCars] = useState(null)
+const CarShop = ({ isMobile }) => {
   const [allCars, setAllCars] = useState(null)
+  const [cars, setCars] = useState(null)
 
   useEffect(() => {
-    console.log('start requirest')
     axios
       .get('http://localhost:1251/cars')
       .then(response => {
-        setCars(response.data)
         setAllCars(response.data)
+        setCars(response.data)
       })
   }, [])
 
@@ -44,7 +43,7 @@ const CarShop = ({ isMobile, currentRoute, setRoute }) => {
   }
   return (
     <>
-      <Section section={'cars'} isMobile={isMobile}>
+      <Section isMobile={isMobile} section={'cars'}>
         <>
           {cars == null ? (
             <p>Chargement ..</p>
@@ -67,8 +66,8 @@ const CarShop = ({ isMobile, currentRoute, setRoute }) => {
             </div>
           )}
           <BackgroundImg
-            img={'bgHome.jpg'}
             alt={'lossantos'}
+            img={'bgHome.jpg'}
           />
           <Filter />
         </>

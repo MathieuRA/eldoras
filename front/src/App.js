@@ -1,14 +1,15 @@
 import { useState } from 'react'
 
+import Body from './component/Body'
+
 import {
   Footer,
   MainMenu,
 } from './component/utils/template'
 
-import Body from './component/Body'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 const App = () => {
   const mobile =
@@ -20,15 +21,15 @@ const App = () => {
   return (
     <>
       <MainMenu
+        currentRoute={route}
         isMobile={mobile}
         setRoute={setRoute}
-        currentRoute={route}
       />
       <main id={'wrapId'}></main>
       <Body
+        currentRoute={route}
         isMobile={mobile}
         setRoute={setRoute}
-        currentRoute={route}
       />
       <div id={'credits'}>
         <Footer />

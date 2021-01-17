@@ -13,13 +13,13 @@ import {
 import './JoinUs.css'
 
 export default function JoinUs({
+  currentRoute,
   isMobile,
   setRoute,
-  currentRoute,
 }) {
   return (
     <>
-      <Section section={'joinUs'} isMobile={isMobile}>
+      <Section isMobile={isMobile} section={'joinUs'}>
         <BackgroundImg
           alt={'lostsantos'}
           img={'bgJoinUs.jpg'}
@@ -31,19 +31,19 @@ export default function JoinUs({
             </div>
           )}
           <Filter
-            float={'none'}
-            rotate={0}
-            height={100}
-            width={100}
-            top={0}
             absolute
+            float={'none'}
+            height={100}
+            rotate={0}
+            top={0}
+            width={100}
           />
           <div className={'containerJoinUs'}>
             {!isMobile && (
               <div>
                 <img
-                  src='./assets/img/logo.png'
                   alt={'ok'}
+                  src='./assets/img/logo.png'
                 />
               </div>
             )}
@@ -59,13 +59,13 @@ export default function JoinUs({
                 </p>
               )}
               <iframe
-                title='discord widget'
-                src='https://discord.com/widget?id=792781992609579070&theme=dark'
-                width='350'
-                height='170'
                 allowtransparency='true'
                 frameBorder='0'
+                height='170'
                 sandbox='allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts'
+                src='https://discord.com/widget?id=792781992609579070&theme=dark'
+                title='discord widget'
+                width='350'
               ></iframe>
             </div>
           </div>
