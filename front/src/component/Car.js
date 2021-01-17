@@ -23,7 +23,7 @@ export default function Car({ car }) {
             borderColor: '#000000',
           }}
         >
-          {sponsorship} parrainage
+          {sponsorship} parrainage{sponsorship > 1 && 's'}
         </Alert>
       </Card.Body>
     </Card>
