@@ -1,7 +1,7 @@
 .carsShopContainer {
   position: absolute;
   z-index: 10;
-  top: 120px;
+  top: 160px;
   display: flex;
   width: 100%;
 }

@@ -1,56 +1,64 @@
-import React from 'react'
-import { ListGroup } from 'react-bootstrap'
+import axios from 'axios'
+import { forEach, isEmpty, map } from 'lodash'
+import React, { useEffect, useState } from 'react'
+import { Button, ListGroup } from 'react-bootstrap'
 
-const CATEGORIES = {}
+const SELECTEDCATEGORIES = {}
 
 export default function FilterCars({ setFilter }) {
+  const [categories, setCategories] = useState()
+  useEffect(() => {
+    axios
+      .get('http://localhost:1251/categories')
+      .then(resp => setCategories(resp.data))
+  }, [])
+
   const handleChange = e => {
     if (!e.target.checked) {
-      delete CATEGORIES[e.target.name]
-      setFilter(CATEGORIES)
+      delete SELECTEDCATEGORIES[e.target.name]
+      setFilter(SELECTEDCATEGORIES)
       return
     }
-    CATEGORIES[e.target.name] = e.target.name
-    setFilter(CATEGORIES)
+    SELECTEDCATEGORIES[e.target.name] = e.target.name
+    setFilter(SELECTEDCATEGORIES)
   }
+
+  const unselectAll = () => {
+    forEach(SELECTEDCATEGORIES, category => {
+      delete SELECTEDCATEGORIES[category]
+      document.getElementById(category).checked = false
+    })
+    setFilter(SELECTEDCATEGORIES)
+  }
+
   return (
     <>
-      <p>Filter par:</p>
-      <div>
-        <p>Catégorie</p>
+      <div
+        style={{
+          backgroundColor: 'white',
+          borderRadius: 5,
+        }}
+      >
         <ListGroup>
-          <ListGroup.Item>
-            <input
-              type='checkbox'
-              onChange={handleChange}
-              name='Sportive'
-            />{' '}
-            Sportive
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <input
-              type='checkbox'
-              onChange={handleChange}
-              name='SUV'
-            />{' '}
-            SUV
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <input
-              type='checkbox'
-              onChange={handleChange}
-              name='Coupé'
-            />{' '}
-            Coupé
-          </ListGroup.Item>
-          <ListGroup.Item>
-            <input
-              type='checkbox'
-              onChange={handleChange}
-              name='Muscle'
-            />{' '}
-            Muscle{' '}
-          </ListGroup.Item>
+          {!isEmpty(SELECTEDCATEGORIES) && (
+            <Button
+              variant='outline-dark'
+              onClick={unselectAll}
+            >
+              Tout décocher
+            </Button>
+          )}
+          {map(categories, category => (
+            <ListGroup.Item key={category._id}>
+              <input
+                type='checkbox'
+                onChange={handleChange}
+                name={category.name}
+                id={category.name}
+              />
+              {' ' + category.name}
+            </ListGroup.Item>
+          ))}
         </ListGroup>
       </div>
     </>

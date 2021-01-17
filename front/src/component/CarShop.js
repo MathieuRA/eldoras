@@ -1,14 +1,7 @@
 import axios from 'axios'
 
 import React, { useEffect, useState } from 'react'
-import {
-  filter,
-  find,
-  includes,
-  isEmpty,
-  map,
-  some,
-} from 'lodash'
+import { filter, includes, isEmpty } from 'lodash'
 
 import Car from './Car'
 import FilterCars from './utils/FilterCars'
@@ -35,16 +28,16 @@ const CarShop = ({ isMobile, currentRoute, setRoute }) => {
       })
   }, [])
 
-  const setFilterCars = categories => {
-    if (isEmpty(categories)) {
-      console.log(allCars)
+  const setFilterCars = selectedCategories => {
+    if (isEmpty(selectedCategories)) {
       setCars(allCars)
       return
     }
+
     setCars(
       filter(allCars, car =>
-        car.category.some(category =>
-          includes(categories, category)
+        car.categories.some(category =>
+          includes(selectedCategories, category)
         )
       )
     )
@@ -59,7 +52,6 @@ const CarShop = ({ isMobile, currentRoute, setRoute }) => {
             <div className={'carsShopContainer'}>
               <div
                 style={{
-                  backgroundColor: 'white',
                   height: 'calc(100vh - 120px)',
                   padding: 15,
                   whiteSpace: 'nowrap',
