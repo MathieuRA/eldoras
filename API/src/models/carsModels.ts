@@ -6,8 +6,8 @@ const Schema = mongoose.Schema
 
 export default new Schema({
   category: {
-    type: String,
-    required: 'Une categorie est obligatoire',
+    type: [String],
+    required: 'Au moin une categorie est obligatoire',
   },
   creationDate: {
     type: Number,

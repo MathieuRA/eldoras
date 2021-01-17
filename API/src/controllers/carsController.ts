@@ -10,9 +10,10 @@ const Cars = mongoose.model('cars', carsModel)
 export const addCar = (req: Request, res: Response) => {
   try {
     const { category, title, sponsorship } = req.body
+
     const body = {
       img: req['file'].path,
-      category,
+      category: category.split(' '),
       title,
       sponsorship,
     }
@@ -23,11 +24,24 @@ export const addCar = (req: Request, res: Response) => {
       if (err) {
         res.status(403)
         res.send(err)
-        throw err
+        console.error(err)
+        return
       }
       res.status(201).json(data)
     })
   } catch (error) {
     res.status(403).json({ message: 'Non autorisé' })
   }
+}
+
+export const getAllCar = (req: Request, res: Response) => {
+  Cars.find((err, data) => {
+    if (err) {
+      res.status(403)
+      res.send(err)
+      console.error(err)
+      return
+    }
+    res.status(200).json(data)
+  })
 }

@@ -2,10 +2,14 @@
 
 import multer from '../middleware/multer'
 
-import { addCar } from '../controllers/carsController'
+import {
+  addCar,
+  getAllCar,
+} from '../controllers/carsController'
 
 const carsRoutes = (app: any): void => {
   app.route('/car').post(multer, addCar)
+  app.route('/cars').get(getAllCar)
 }
 
 export default carsRoutes

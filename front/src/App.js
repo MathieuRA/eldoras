@@ -8,6 +8,7 @@ import {
 import Body from './component/Body'
 
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const App = () => {
   const mobile =
