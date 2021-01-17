@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 export default new Schema({
-  category: {
+  categories: {
     type: [String],
     required: 'Au moin une categorie est obligatoire',
   },

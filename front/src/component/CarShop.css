@@ -1,0 +1,14 @@
+.carsShopContainer {
+  position: absolute;
+  z-index: 10;
+  top: 120px;
+  display: flex;
+  width: 100%;
+}
+.carsContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(100vh - 105px);
+  overflow: scroll;
+}

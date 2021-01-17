@@ -9,14 +9,16 @@ const Cars = mongoose.model('cars', carsModel)
 
 export const addCar = (req: Request, res: Response) => {
   try {
-    const { category, title, sponsorship } = req.body
+    const { categories, title, sponsorship } = req.body
 
     const body = {
       img: req['file'].path,
-      category: category.split(' '),
+      categories: categories.split(','),
       title,
       sponsorship,
     }
+
+    console.log(body)
 
     const car = new Cars(body)
 

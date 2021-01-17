@@ -1,10 +1,12 @@
 import React from 'react'
 
-import { Alert, Button, Card } from 'react-bootstrap'
+import { Alert, Card } from 'react-bootstrap'
+
 export default function Car({ car }) {
   const { title, img, sponsorship } = car
 
   const newSrc = img.replace('public', '.')
+
   return (
     <Card
       style={{

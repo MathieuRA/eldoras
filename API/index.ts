@@ -8,6 +8,7 @@ import mongoose, { CallbackError } from 'mongoose'
 
 import carsRoutes from './src/routes/carsRoutes'
 import mongoLog from './mongoLog'
+import categoriesRoutes from './src/routes/categoriesRoutes'
 
 const app = express()
 
@@ -31,6 +32,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+categoriesRoutes(app)
 carsRoutes(app)
 
 app.listen(PORT, () => {
