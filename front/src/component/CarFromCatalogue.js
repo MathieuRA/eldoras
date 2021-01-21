@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Alert, Card } from 'react-bootstrap'
 
-export default function Car({ car }) {
-  const { img, sponsorship, title } = car
+export default function CarFromCatalogue({ car }) {
+  const { img, price, title } = car
 
   const newSrc = img.replace('public', '.')
 
@@ -25,7 +25,7 @@ export default function Car({ car }) {
             color: '#36383a',
           }}
         >
-          {sponsorship} parrainage{sponsorship > 1 && 's'}
+          {price} $
         </Alert>
       </Card.Body>
     </Card>

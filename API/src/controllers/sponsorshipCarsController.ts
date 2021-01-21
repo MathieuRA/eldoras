@@ -12,15 +12,17 @@ const Cars = mongoose.model(
   sponsorshipCarsModel
 )
 
-export const addCar = (req: Request, res: Response) => {
+export const addSponsorshipCar = (
+  req: Request,
+  res: Response
+) => {
   try {
-    const { categories, title, sponsorship } = req.body
+    const { categories, title } = req.body
 
     const body: ISponsorshipCar = {
       img: req['file'].path,
       categories: categories.split(','),
       title,
-      sponsorship,
     }
 
     const car = new Cars(body)
@@ -39,8 +41,11 @@ export const addCar = (req: Request, res: Response) => {
   }
 }
 
-export const getAllCar = (req: Request, res: Response) => {
-  Cars.find((err, data) => {
+export const getAllSponsorshipCars = (
+  req: Request,
+  res: Response
+) => {
+  Cars.find((err, data: ISponsorshipCar[]) => {
     if (err) {
       res.status(403)
       res.send(err)

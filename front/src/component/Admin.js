@@ -30,10 +30,7 @@ export default function Admin() {
     formData.append('car', state.file)
     formData.append('categories', selectedOptions)
     formData.append('title', e.target.title.value)
-    formData.append(
-      'sponsorship',
-      e.target.sponsorship.value
-    )
+    formData.append('price', e.target.price?.value)
 
     const config = {
       headers: {
@@ -42,7 +39,11 @@ export default function Admin() {
     }
 
     axios
-      .post('http://localhost:1251/car', formData, config)
+      .post(
+        'http://localhost:1251/catalogueCar',
+        formData,
+        config
+      )
       .then(response => {
         alert('File uploaded')
       })
@@ -105,8 +106,8 @@ export default function Admin() {
         </select>
         <input
           type='number'
-          name='sponsorship'
-          placeholder='sponsorship'
+          name='price'
+          placeholder='price'
         />
         <input
           type='text'

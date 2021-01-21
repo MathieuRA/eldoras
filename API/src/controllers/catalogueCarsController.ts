@@ -4,23 +4,27 @@ import mongoose from 'mongoose'
 
 import { Request, Response } from 'express'
 
-import sponsorshipCarsModel from '../models/sponsorshipCarsModel'
-import { ISponsorshipCar } from '../interfaces'
+import ICatalogueCar from '../interfaces/ICatalogueCar'
+
+import { catalogueCarsModel } from '../models'
 
 const Cars = mongoose.model(
-  'sponsorshipCars',
-  sponsorshipCarsModel
+  'catalogueCars',
+  catalogueCarsModel
 )
 
-export const addCar = (req: Request, res: Response) => {
+export const addCatalogueCar = (
+  req: Request,
+  res: Response
+) => {
   try {
-    const { categories, title, sponsorship } = req.body
+    const { categories, title, price } = req.body
 
-    const body: ISponsorshipCar = {
+    const body: ICatalogueCar = {
       img: req['file'].path,
       categories: categories.split(','),
+      price,
       title,
-      sponsorship,
     }
 
     const car = new Cars(body)
@@ -35,11 +39,15 @@ export const addCar = (req: Request, res: Response) => {
       res.status(201).json(data)
     })
   } catch (error) {
+    console.error(error)
     res.status(403).json({ message: 'Non autorisé' })
   }
 }
 
-export const getAllCar = (req: Request, res: Response) => {
+export const getAllCarsFromCatalogue = (
+  req: Request,
+  res: Response
+) => {
   Cars.find((err, data) => {
     if (err) {
       res.status(403)

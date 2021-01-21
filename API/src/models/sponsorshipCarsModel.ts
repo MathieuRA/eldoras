@@ -19,7 +19,7 @@ export default new Schema({
   },
   sponsorship: {
     type: Number,
-    required: 'Un nombre de parrainage est requis',
+    default: 3,
   },
   title: {
     type: String,

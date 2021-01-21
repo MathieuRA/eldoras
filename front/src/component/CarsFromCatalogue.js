@@ -3,7 +3,6 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { filter, includes, isEmpty } from 'lodash'
 
-import Car from './Car'
 import FilterCars from './utils/FilterCars'
 
 import {
@@ -12,15 +11,18 @@ import {
   Section,
 } from './utils/template'
 
-import './CarShop.css'
+import CarFromCatalogue from './CarFromCatalogue'
 
-const CarShop = ({ isMobile }) => {
+import './CarsFromCatalogue.css'
+import { Spinner } from 'react-bootstrap'
+
+const CarsFromCatalogue = ({ isMobile }) => {
   const [allCars, setAllCars] = useState(null)
   const [cars, setCars] = useState(null)
 
   useEffect(() => {
     axios
-      .get('http://localhost:1251/cars')
+      .get('http://localhost:1251/catalogueCars')
       .then(response => {
         setAllCars(response.data)
         setCars(response.data)
@@ -46,7 +48,23 @@ const CarShop = ({ isMobile }) => {
       <Section isMobile={isMobile} section={'cars'}>
         <>
           {cars == null ? (
-            <p>Chargement ..</p>
+            <div
+              style={{
+                position: 'absolute',
+                zIndex: 10,
+                top: '45%',
+                left: '45%',
+              }}
+            >
+              <Spinner
+                animation='border'
+                role='status'
+                variant='light'
+                size={'xl'}
+              >
+                <span className='sr-only'>Loading...</span>
+              </Spinner>
+            </div>
           ) : (
             <div className={'carsShopContainer'}>
               <div
@@ -54,13 +72,17 @@ const CarShop = ({ isMobile }) => {
                   height: 'calc(100vh - 120px)',
                   padding: 15,
                   whiteSpace: 'nowrap',
+                  position: 'fixed',
                 }}
               >
                 <FilterCars setFilter={setFilterCars} />
               </div>
               <div className={'carsContainer'}>
                 {cars.map(car => (
-                  <Car car={car} key={car._id} />
+                  <CarFromCatalogue
+                    car={car}
+                    key={car._id}
+                  />
                 ))}
               </div>
             </div>
@@ -76,4 +98,4 @@ const CarShop = ({ isMobile }) => {
   )
 }
 
-export default CarShop
+export default CarsFromCatalogue

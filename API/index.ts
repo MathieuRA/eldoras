@@ -6,9 +6,8 @@ import express from 'express'
 
 import mongoose, { CallbackError } from 'mongoose'
 
-import carsRoutes from './src/routes/carsRoutes'
 import mongoLog from './mongoLog'
-import categoriesRoutes from './src/routes/categoriesRoutes'
+import { carsRoutes, categoriesRoutes } from './src/routes'
 
 const app = express()
 

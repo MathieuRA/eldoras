@@ -4,7 +4,7 @@ import {
   faNewspaper,
 } from '@fortawesome/free-solid-svg-icons'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { elastic as Menu } from 'react-burger-menu'
@@ -105,6 +105,15 @@ export const MainMenu = ({
               >
                 Nous rejoindre
               </Link>
+              <Link
+                router={{
+                  currentRoute: currentRoute,
+                  setRoute: setRoute,
+                  newRoute: 'carsFromCatalogue',
+                }}
+              >
+                Catalogue
+              </Link>
               <Tooltips content={'Bientôt disponible'}>
                 <Link
                   disabled
@@ -133,10 +142,10 @@ export const MainMenu = ({
                 router={{
                   currentRoute: currentRoute,
                   setRoute: setRoute,
-                  newRoute: 'carShop',
+                  newRoute: 'carsSponsorship',
                 }}
               >
-                Boutique
+                Parrainage
               </Link>
             </Menu>
           </div>
@@ -150,7 +159,7 @@ export const MainMenu = ({
                 router={{
                   currentRoute: currentRoute,
                   setRoute: setRoute,
-                  newRoute: 'carShop',
+                  newRoute: 'carsFromCatalogue',
                 }}
               >
                 <FontAwesomeIcon icon={faCar} size={'2x'} />

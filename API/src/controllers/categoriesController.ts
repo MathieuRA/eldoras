@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import { Request, Response } from 'express'
 
 import categoriesModel from '../models/categoriesModel'
+import ICatalogueCar from '../interfaces/ICatalogueCar'
 
 const Categories = mongoose.model(
   'categories',
@@ -37,7 +38,7 @@ export const getAllCategories = (
   req: Request,
   res: Response
 ) => {
-  Categories.find((err, categories) => {
+  Categories.find((err, categories: ICatalogueCar[]) => {
     if (err) {
       res.status(403).send(err)
       console.log(err)
