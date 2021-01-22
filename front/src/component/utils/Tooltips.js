@@ -6,7 +6,6 @@ export default function Tooltips({ children, content }) {
   const [hover, setHover] = useState(false)
   const [position, setPosition] = useState(0)
   const toggleHover = e => {
-    console.log(e.clientY)
     setPosition(e.clientY + 10)
     setHover(!hover)
   }

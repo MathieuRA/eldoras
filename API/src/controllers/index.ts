@@ -1,0 +1,6 @@
+export { addSponsorshipCar as addSponsorshipCar } from './sponsorshipCarsController'
+export { getAllSponsorshipCars as getAllSponsorshipCars } from './sponsorshipCarsController'
+export { addCategory as addCategory } from './categoriesController'
+export { deleteCategory as deleteCategory } from './categoriesController'
+export { getAllCategories as getAllCategories } from './categoriesController'
+export { getAllCarsFromCatalogue as getAllCarsFromCatalogue } from './catalogueCarsController'
