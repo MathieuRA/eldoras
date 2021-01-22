@@ -11,6 +11,8 @@ import {
   Section,
 } from './utils/template'
 
+import './spinner.css'
+
 const CarsSponsorship = ({ isMobile }) => {
   const [cars, setCars] = useState()
   useEffect(() => {
@@ -67,14 +69,7 @@ const CarsSponsorship = ({ isMobile }) => {
               </div>
             </div>
           ) : (
-            <div
-              style={{
-                position: 'absolute',
-                zIndex: 10,
-                top: '45%',
-                left: '45%',
-              }}
-            >
+            <div className={'spinner'}>
               <Spinner
                 animation='border'
                 role='status'

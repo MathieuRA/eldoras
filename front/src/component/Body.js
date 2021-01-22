@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Admin from './Admin'
+import AdminContainer from './AdminContainer'
 import CarsFromCatalogue from './CarsFromCatalogue'
 import CarsSponsorship from './CarsSponsorship'
 import HomeContainer from './HomeContainer'
@@ -21,7 +21,7 @@ const Body = ({ currentRoute, isMobile, setRoute }) => {
       {currentRoute === 'carsSponsorship' && (
         <CarsSponsorship isMobile={isMobile} />
       )}
-      {currentRoute === 'admin' && <Admin />}
+      {currentRoute === 'admin' && <AdminContainer />}
     </>
   )
 }

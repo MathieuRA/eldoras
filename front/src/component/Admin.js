@@ -3,8 +3,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 import { forEach, map } from 'lodash'
+import {
+  AddCategory,
+  DeleteCategory,
+  EditCategory,
+} from './AdminCategorie'
+import { Button } from 'react-bootstrap'
 
-export default function Admin() {
+function Admin() {
   const [categories, setCategories] = useState()
   const [state, setState] = useState({})
 
@@ -60,34 +66,6 @@ export default function Admin() {
     console.log(e.target.value)
   }
 
-  // New category
-
-  const onNewCategory = e => {
-    e.preventDefault()
-
-    const formData = new FormData()
-    formData.append('category', e.target.category.value)
-
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    }
-
-    axios
-      .post(
-        'http://localhost:1251/category',
-        formData,
-        config
-      )
-      .then(response => {
-        alert('categorie added uploaded')
-      })
-      .catch(error => {
-        console.log({ error })
-      })
-  }
-
   return (
     <div style={{ position: 'absolute', top: '50%' }}>
       <form onSubmit={onFormSubmit}>
@@ -117,14 +95,39 @@ export default function Admin() {
         <input type='file' name='car' onChange={onChange} />
         <button type='submit'>Upload</button>
       </form>
-      <form onSubmit={onNewCategory}>
-        <input
-          type='text'
-          name='category'
-          placeholder='nouvelle catégorie'
-        />
-        <button type='submit'>Envoyer</button>
-      </form>
     </div>
+  )
+}
+
+export const Categorie = () => {
+  const [categoryRoute, setCategoryRoute] = useState('add')
+
+  return (
+    <>
+      <Button
+        disabled={categoryRoute === 'add'}
+        variant='success'
+        onClick={() => setCategoryRoute('add')}
+      >
+        Nouvelle catégorie
+      </Button>
+      <Button
+        disabled={categoryRoute === 'edit'}
+        variant='warning'
+        onClick={() => setCategoryRoute('edit')}
+      >
+        Modifier une catégorie
+      </Button>
+      <Button
+        disabled={categoryRoute === 'delete'}
+        variant='danger'
+        onClick={() => setCategoryRoute('delete')}
+      >
+        Supprimer une catégorie
+      </Button>
+      {categoryRoute === 'add' && <AddCategory />}
+      {categoryRoute === 'edit' && <EditCategory />}
+      {categoryRoute === 'delete' && <DeleteCategory />}
+    </>
   )
 }

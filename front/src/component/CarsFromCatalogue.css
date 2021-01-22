@@ -13,3 +13,9 @@
   height: calc(100vh - 105px);
   overflow: scroll;
 }
+.filterContainer {
+  height: 'calc(100vh - 120px)';
+  padding: 15px;
+  white-space: nowrap;
+  position: fixed;
+}
