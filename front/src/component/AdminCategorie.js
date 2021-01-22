@@ -111,28 +111,38 @@ export const EditCategory = () => {
     callCategories(setCategories)
   }, [])
 
-  console.log(categories)
+  const refresh = () => callCategories(setCategories)
 
   return (
     !isEmpty(categories) &&
     map(categories, category => (
-      <CategoryInput category={category} />
+      <CategoryInput
+        category={category}
+        refresh={refresh}
+      />
     ))
   )
 }
 
-const CategoryInput = ({ category }) => {
+const CategoryInput = ({ category, refresh }) => {
   const [editing, setEditing] = useState(false)
 
   const handleEdit = e => {
     e.preventDefault()
     const editCategory = new FormData()
     editCategory.append('name', e.target.name.value)
-    axios.put(
-      `http://localhost:1251/category/${category._id}`,
-      editCategory,
-      CONFIGHTTP
-    )
+    editCategory.append('_id', category._id)
+    axios
+      .put(
+        `http://localhost:1251/category/${category._id}`,
+        editCategory,
+        CONFIGHTTP
+      )
+      .then(() => {
+        setEditing(false)
+        refresh()
+      })
+      .catch(err => console.error(err))
   }
 
   return editing ? (

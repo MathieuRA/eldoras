@@ -70,5 +70,18 @@ export const updateCategory = (
   req: Request,
   res: Response
 ) => {
-  console.log(req.body)
+  const { _id, name } = req.body
+
+  Categories.findOneAndUpdate(
+    { _id },
+    { name },
+    { returnOriginal: false, useFindAndModify: false },
+    err => {
+      if (err) {
+        res.status(403).json({ err })
+        return
+      }
+      res.status(200).json({ message: 'Updated' })
+    }
+  )
 }
