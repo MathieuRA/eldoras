@@ -16,7 +16,7 @@ const App = () => {
     typeof window.orientation !== 'undefined' ||
     navigator.userAgent.indexOf('IEMobile') !== -1
 
-  const [route, setRoute] = useState('admin')
+  const [route, setRoute] = useState('home')
 
   return (
     <>
