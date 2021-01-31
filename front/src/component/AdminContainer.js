@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Nav } from 'react-bootstrap'
-import Admin, { Categorie } from './Admin'
+import { Catalogue, Categorie, SponsorShip } from './Admin'
 import { Section } from './utils/template'
 
 import './AdminContainer.css'
@@ -37,10 +37,8 @@ const AdminContainer = ({}) => {
         </Nav>
         <div>
           {adminRoute === 'categorie' && <Categorie />}
-          {adminRoute === 'catalogue' && <p>catalogue</p>}
-          {adminRoute === 'sponsorship' && (
-            <p>sponsorship</p>
-          )}
+          {adminRoute === 'catalogue' && <Catalogue />}
+          {adminRoute === 'sponsorship' && <SponsorShip />}
         </div>
       </div>
     </Section>

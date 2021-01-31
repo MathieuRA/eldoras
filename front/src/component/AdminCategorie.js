@@ -2,17 +2,13 @@ import axios from 'axios'
 import { isEmpty, map } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Alert, Button } from 'react-bootstrap'
+import { apiCallGet, EditInput } from './utils'
+import { apiCallDelete } from './utils/callApi'
 
 const CONFIGHTTP = {
   headers: {
     'content-type': 'multipart/form-data',
   },
-}
-
-const callCategories = setCategories => {
-  axios
-    .get('http://localhost:1251/categories')
-    .then(response => setCategories(response.data))
 }
 
 export const AddCategory = () => {
@@ -50,10 +46,12 @@ export const AddCategory = () => {
 
 const handleDelete = async (id, setCategories) => {
   try {
-    await axios.delete(
-      `http://localhost:1251/category/${id}`
+    await apiCallDelete(
+      id,
+      setCategories,
+      'categories',
+      'category'
     )
-    callCategories(setCategories)
     return 'success'
   } catch (error) {
     return 'error'
@@ -65,7 +63,7 @@ export const DeleteCategory = () => {
   const [success, setSuccess] = useState(false)
 
   useEffect(() => {
-    callCategories(setCategories)
+    apiCallGet(setCategories, 'categories')
   }, [])
 
   return isEmpty(categories) ? (
@@ -108,61 +106,17 @@ export const EditCategory = () => {
   const [categories, setCategories] = useState()
 
   useEffect(() => {
-    callCategories(setCategories)
+    apiCallGet(setCategories, 'categories')
   }, [])
-
-  const refresh = () => callCategories(setCategories)
 
   return (
     !isEmpty(categories) &&
     map(categories, category => (
-      <CategoryInput
-        category={category}
-        refresh={refresh}
+      <EditInput
+        item={category}
+        refresh={setCategories}
+        type={'category'}
       />
     ))
-  )
-}
-
-const CategoryInput = ({ category, refresh }) => {
-  const [editing, setEditing] = useState(false)
-
-  const handleEdit = e => {
-    e.preventDefault()
-    const editCategory = new FormData()
-    editCategory.append('name', e.target.name.value)
-    editCategory.append('_id', category._id)
-    axios
-      .put(
-        `http://localhost:1251/category/${category._id}`,
-        editCategory,
-        CONFIGHTTP
-      )
-      .then(() => {
-        setEditing(false)
-        refresh()
-      })
-      .catch(err => console.error(err))
-  }
-
-  return editing ? (
-    <form onSubmit={handleEdit}>
-      <input
-        type='text'
-        placeholder={category.name}
-        name='name'
-      />
-      <Button variant='warning' type='submit'>
-        Modifier
-      </Button>
-      <Button
-        variant='danger'
-        onClick={() => setEditing(false)}
-      >
-        Annuler
-      </Button>
-    </form>
-  ) : (
-    <p onClick={() => setEditing(true)}>{category.name}</p>
   )
 }

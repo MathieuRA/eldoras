@@ -17,12 +17,13 @@ export const addSponsorshipCar = (
   res: Response
 ) => {
   try {
-    const { categories, title } = req.body
+    const { categories, title, sponsorship } = req.body
 
     const body: ISponsorshipCar = {
       img: req['file'].path,
       categories: categories.split(','),
       title,
+      sponsorship: sponsorship !== '' ? sponsorship : 3,
     }
 
     const car = new Cars(body)
@@ -41,6 +42,26 @@ export const addSponsorshipCar = (
   }
 }
 
+export const deleteSponsorShipCar = (
+  req: Request,
+  res: Response
+) => {
+  Cars.findByIdAndDelete(
+    {
+      _id: req.params.id,
+    },
+    undefined,
+    (err, data) => {
+      if (err) {
+        res.status(404).send({ err })
+        console.error(err)
+        return
+      }
+      res.status(200).json(data)
+    }
+  )
+}
+
 export const getAllSponsorshipCars = (
   req: Request,
   res: Response
@@ -54,4 +75,33 @@ export const getAllSponsorshipCars = (
     }
     res.status(200).json(data)
   })
+}
+
+export const updateSponsorshipCar = (
+  req: Request,
+  res: Response
+) => {
+  const { _id, title, sponsorship } = req.body
+
+  const data = {
+    title,
+    sponsorship,
+  }
+
+  title === '' && delete data.title
+  sponsorship === '' && delete data.sponsorship
+
+  Cars.findOneAndUpdate(
+    { _id },
+    data,
+    { returnOriginal: false, useFindAndModify: false },
+    err => {
+      if (err) {
+        res.status(403).json({ err })
+        console.error(err)
+        return
+      }
+      res.status(200).json({ message: 'Updated' })
+    }
+  )
 }

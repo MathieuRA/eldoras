@@ -4,7 +4,7 @@ import {
   faNewspaper,
 } from '@fortawesome/free-solid-svg-icons'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { elastic as Menu } from 'react-burger-menu'
@@ -13,6 +13,10 @@ import Tooltips from './Tooltips'
 
 import './template.css'
 import './Menu.css'
+import { apiCallGet } from './callApi'
+import { getSelectedOptions } from './selectors'
+import axios from 'axios'
+import { map } from 'lodash'
 
 export const BackgroundImg = ({ alt, img }) => (
   <img
@@ -254,6 +258,89 @@ Link.propTypes = {
     setRoute: PropTypes.func.isRequired,
     newRoute: PropTypes.string,
   }).isRequired,
+}
+
+export const AddFormCar = ({ endpoint }) => {
+  const [categories, setCategories] = useState()
+  const [file, setFile] = useState()
+  const isForCatalogue = endpoint === 'catalogueCar'
+
+  useEffect(() => {
+    apiCallGet(setCategories, 'categories')
+  }, [])
+
+  const onNewCar = e => {
+    e.preventDefault()
+
+    const {
+      title,
+      categories,
+      sponsorship,
+      price,
+    } = e.target
+
+    const selectedCategories = getSelectedOptions(
+      categories
+    )
+
+    const formData = new FormData()
+    formData.append('car', file)
+    formData.append('categories', selectedCategories)
+    formData.append('title', title.value)
+    formData.append(
+      isForCatalogue ? 'price' : 'sponsorship',
+      isForCatalogue ? price.value : sponsorship.value
+    )
+
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    }
+
+    axios
+      .post(
+        'http://localhost:1251/' + endpoint,
+        formData,
+        config
+      )
+      .then(() => alert('car added'))
+      .catch(err => console.error(err))
+  }
+
+  const addFile = e => setFile(e.target.files[0])
+
+  return (
+    <div>
+      <form onSubmit={onNewCar}>
+        <small>CTRL pour plusieur choix</small>
+        <select multiple name='categories'>
+          {map(categories, category => (
+            <option key={category._id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+        <input
+          type='number'
+          name={isForCatalogue ? 'price' : 'sponsorship'}
+          placeholder={
+            isForCatalogue ? 'price' : 'sponsorship'
+          }
+        />
+        <input
+          type='text'
+          name='title'
+          placeholder='title'
+        />
+        <input type='file' name='car' onChange={addFile} />
+        <button type='submit'>Upload</button>
+      </form>
+    </div>
+  )
+}
+AddFormCar.propTypes = {
+  endpoint: PropTypes.string.isRequired,
 }
 
 export const Footer = () => {

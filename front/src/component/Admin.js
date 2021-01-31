@@ -9,6 +9,16 @@ import {
   EditCategory,
 } from './AdminCategorie'
 import { Button } from 'react-bootstrap'
+import {
+  AddSponsorship,
+  DeleteSponsorship,
+  EditSponsorship,
+} from './AdminSponsorship'
+import {
+  AddCatalogueCar,
+  DeleteCalatogueCar,
+  EditCatalogueCar,
+} from './AdminCatalogue'
 
 function Admin() {
   const [categories, setCategories] = useState()
@@ -128,6 +138,76 @@ export const Categorie = () => {
       {categoryRoute === 'add' && <AddCategory />}
       {categoryRoute === 'edit' && <EditCategory />}
       {categoryRoute === 'delete' && <DeleteCategory />}
+    </>
+  )
+}
+
+export const SponsorShip = () => {
+  const [sponsorShipRoute, setSponsorShipRoute] = useState(
+    'add'
+  )
+
+  return (
+    <>
+      <Button
+        disabled={sponsorShipRoute === 'add'}
+        variant='success'
+        onClick={() => setSponsorShipRoute('add')}
+      >
+        Nouvelle voiture
+      </Button>
+      <Button
+        disabled={sponsorShipRoute === 'edit'}
+        variant='warning'
+        onClick={() => setSponsorShipRoute('edit')}
+      >
+        Modifier une voiture
+      </Button>
+      <Button
+        disabled={sponsorShipRoute === 'delete'}
+        variant='danger'
+        onClick={() => setSponsorShipRoute('delete')}
+      >
+        Supprimer une voiture
+      </Button>
+      {sponsorShipRoute === 'add' && <AddSponsorship />}
+      {sponsorShipRoute === 'edit' && <EditSponsorship />}
+      {sponsorShipRoute === 'delete' && (
+        <DeleteSponsorship />
+      )}
+    </>
+  )
+}
+
+export const Catalogue = () => {
+  const [catalogue, setCatalogue] = useState('add')
+
+  return (
+    <>
+      <Button
+        disabled={catalogue === 'add'}
+        variant='success'
+        onClick={() => setCatalogue('add')}
+      >
+        Nouvelle voiture
+      </Button>
+      <Button
+        disabled={catalogue === 'edit'}
+        variant='warning'
+        onClick={() => setCatalogue('edit')}
+      >
+        Modifier une voiture
+      </Button>
+      <Button
+        disabled={catalogue === 'delete'}
+        variant='danger'
+        onClick={() => setCatalogue('delete')}
+      >
+        Supprimer une voiture
+      </Button>
+      {catalogue === 'add' && <AddCatalogueCar />}
+      {catalogue === 'edit' && <EditCatalogueCar />}
+      {catalogue === 'delete' && <DeleteCalatogueCar />}
     </>
   )
 }
